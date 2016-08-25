@@ -29,3 +29,13 @@ lr.on('line', function (line) {
 
     }
   }
+  //save the loan result
+  defaults.push([result[14]]);
+
+  result.pop();
+
+  data.push(result);
+
+  count++;
+
+});
