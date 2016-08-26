@@ -64,3 +64,16 @@ lr.on('end', function () {
   for (var k = 100; k > 0; k--) {
     testCases.push(data.pop());
   }
+
+   var brain = require('brain');
+
+  var net = new brain.NeuralNetwork();
+
+  net.train(data, {
+    errorThresh: 0,  // error threshold to reach
+    log: true,           // console.log() progress periodically
+    logPeriod: 1000,       // number of iterations between logging
+    learningRate: 0    // learning rate
+  });
+
+  console.log(net.toJSON().layers[0]);
