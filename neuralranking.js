@@ -77,3 +77,35 @@ lr.on('end', function () {
   });
 
   console.log(net.toJSON().layers[0]);
+
+  var correct = 0;
+  var incorrect = 0;
+  var ambiguous = 0;
+
+  for (var i = 0; i < testCases.length; i++) {
+    var output = net.run(testCases[i].input);
+    // console.log('Predicted: ', output);
+    // console.log('Actual: ', testCases[i].output);
+    // console.log('\n');
+
+    if ( (output[0] > 0.85 && testCases[i].output[0] === 1)
+          || (output[0] < 0.15 && testCases[i].output[0] === 0) ) {
+      correct++;
+    } else {
+      incorrect++;
+    }
+
+
+  }
+
+  console.log('\n');
+  console.log('586 records used for training, 100 for testing');
+  console.log('Correct Default Prediction: ', correct);
+  console.log('Incorrect Default Prediction: ', incorrect);
+
+  console.log(correct + "% accurate at a 15% confidence interval");
+
+
+  //now we are ready to train
+
+});
